@@ -127,6 +127,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 1
 
+SITE_TITLE = "Keith Dechant"
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = False
@@ -236,6 +238,9 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
+
+    "terranok-theme",
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -251,10 +256,6 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.blog",
     "mezzanine.forms",
-    "mezzanine.galleries",
-    "mezzanine.twitter",
-    # "mezzanine.accounts",
-    # "mezzanine.mobile",
 
 )
 
