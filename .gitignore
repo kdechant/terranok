@@ -7,3 +7,5 @@ local_settings.py
 /static
 .idea
 venv
+node_modules
+css

@@ -1,0 +1,24 @@
+{
+  "name": "terranok",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.2",
+    "css-loader": "^0.28.7",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5",
+    "raw-loader": "^0.5.1",
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.3"
+  },
+  "scripts": {
+    "start": "npm run build-css:watch",
+    "build-css:watch": "node-sass -w scss -o css",
+    "build-css:upgrade": "node-sass scss -o css"
+  },
+  "author": "Keith Dechant",
+  "license": "ISC"
+}
