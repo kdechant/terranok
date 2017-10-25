@@ -24,12 +24,6 @@
         {% block extra_css %}{% endblock %}
     {% endcompress %}
 
-    {% compress js %}
-        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-        {% block extra_js %}{% endblock %}
-        {% include "includes/footer-scripts.html" %}
-    {% endcompress %}
-
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -102,13 +96,7 @@
     </div>
 </footer>
 
-<!-- Core JavaScript Files -->
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://getbootstrap.com/assets/js/vendor/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+{% include "includes/footer-scripts.html" %}
 
 </body>
 </html>
