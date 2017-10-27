@@ -257,6 +257,7 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
 
+    "projects"
 )
 
 # List of middleware classes to use. Order is important; in the request phase,

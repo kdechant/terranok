@@ -36,15 +36,16 @@
                 {% editable blog_post.publish_date %}
                   <div class="entry-meta">
                   <span>
+                    {% spaceless %}
                     {% with blog_post.categories.all as categories %}
                       {% if categories %}
                         {% trans "in" %}
                         {% for category in categories %}
-                          <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>
-                          {% if not forloop.last %}, {% endif %}
+                          <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
                         {% endfor %}
                       {% endif %}
                     {% endwith %}
+                    {% endspaceless %}
                   </span>
                   </div>
 
@@ -73,6 +74,17 @@
       <div class="col-md">
         <h2>Projects</h2>
 
+        {% for project in projects %}
+          <div class="project-item">
+            <a href="{{ project.get_absolute_url }}">
+              <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ project.image }}">
+            </a>
+            {% block project_list_post_title %}
+              <a href="{{ project.get_absolute_url }}"><h3>{{ project.title }}</h3></a>
+            {% endblock %}
+            {{ project.description_from_content|safe }}
+          </div>
+        {% endfor %}
       </div>
 
     </div>
