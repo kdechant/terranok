@@ -1,0 +1,20 @@
+{% load i18n pages_tags %}
+
+{% spaceless %}
+{% if page_branch_in_menu %}
+
+  <nav class="nav">
+  {% for page in page_branch %}
+
+    {% if page.in_menu %}
+        <a class="nav-link {% if page.is_current_or_ascendant %}active{% endif %}"
+           href="{{ page.get_absolute_url }}" id="footer-menu-{{ page.html_id }}">{{ page.title }}</a>
+    {% endif %}
+
+    {% if page.in_menu and page.has_children_in_menu %}{% page_menu page %}{% endif %}
+
+{% endfor %}
+
+  </nav>
+{% endif %}
+{% endspaceless %}

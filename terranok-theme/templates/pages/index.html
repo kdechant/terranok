@@ -1,0 +1,80 @@
+{% extends "pages/richtextpage.html" %}
+{% load i18n mezzanine_tags blog_tags keyword_tags %}
+
+{% block main %}
+  <!--
+  This template is provided as a custom template for the homepage, for
+  when it is configured as an editable page in the navigation tree. Feel
+  free to modify it.
+  -->
+  {{ block.super }}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md"><h2>Blog</h2>
+
+        {% for blog_post in blog_posts %}
+          <div class="blog-item">
+            {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+              {% block blog_post_list_post_featured_image %}
+                <a href="{{ blog_post.get_absolute_url }}">
+                  <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ blog_post.featured_image }}">
+                </a>
+              {% endblock %}
+            {% endif %}
+            <div class="blog-content">
+
+              {% block blog_post_list_post_title %}
+                <a href="{{ blog_post.get_absolute_url }}"><h3>{{ blog_post.title }}</h3></a>
+              {% endblock %}
+
+              {% block blog_post_list_post_content %}
+                {{ blog_post.description_from_content|safe }}
+              {% endblock %}
+
+              {% block blog_post_list_post_metainfo %}
+                {% editable blog_post.publish_date %}
+                  <div class="entry-meta">
+                  <span>
+                    {% with blog_post.categories.all as categories %}
+                      {% if categories %}
+                        {% trans "in" %}
+                        {% for category in categories %}
+                          <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>
+                          {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                  </span>
+                  </div>
+
+                {% endeditable %}
+              {% endblock %}
+
+              {% block blog_post_list_post_links %}
+                {% keywords_for blog_post as tags %}
+                {% if tags %}
+                  <div class="tags">
+                    {% trans "Tags" %}:
+                    {% spaceless %}
+                      {% for tag in tags %}
+                        <a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a>
+                      {% endfor %}
+                    {% endspaceless %}
+                  </div>
+                {% endif %}
+
+              {% endblock %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="col-md">
+        <h2>Projects</h2>
+
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

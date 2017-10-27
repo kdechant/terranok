@@ -58,19 +58,18 @@
         {% endif %}
     {% endnevercache %}
 
+{% block main %}
+{% endblock %}
 
 </div>
-{% block all_content %}
-    this is the content block
-{% endblock %}
 
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-md-6">
                 {% page_menu "pages/menus/footer.html" %}
             </div>
-            <div class="col-lg-3">
+            <div class="col-md-6">
                 <h4>Social Links</h4>
                 <div class="hline-w"></div>
                 <p>
@@ -79,15 +78,6 @@
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-instagram"></i></a>
                     <a href="#"><i class="fa fa-tumblr"></i></a>
-                </p>
-            </div>
-            <div class="col-lg-3">
-                <h4>Our Bunker</h4>
-                <div class="hline-w"></div>
-                <p>
-                    Some Ave, 987,<br/>
-                    23890, New York,<br/>
-                    United States.<br/>
                 </p>
             </div>
 
