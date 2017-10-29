@@ -9,8 +9,53 @@ body {
   background-color: #f5f5f5;
 }
 
+h1 {
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
 pre {
   background-color: #f7f7f7;
   border: 1px solid #aaa;
   padding: 10px;
+}
+
+figure {
+  img {
+    width: 100%;
+  }
+  figcaption {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    margin: 10px 30px;
+    width: 450px;
+    &.figure-left {
+      float: left;
+      margin-left: -30px;
+    }
+    &.figure-right {
+      float: right;
+      margin-right: -30px;
+    }
+    img {
+      width: 450px;
+    }
+  }
+}
+
+.title {
+  background-color: #ffebc1;
+  @media (min-width: 768px) {
+    padding: 30px 0 15px;
+  }
+}
+
+// blog
+.post-meta {
+  color: #ccc;
+  font-size: 14px;
+  padding: 20px 0;
 }
