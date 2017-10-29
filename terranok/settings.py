@@ -85,6 +85,8 @@ from django.utils.translation import ugettext_lazy as _
 # INSTALLED_APPS setting.
 USE_MODELTRANSLATION = False
 
+# Not using the WYSIWYG for blog posts. Using Markdown instead.
+RICHTEXT_WIDGET_CLASS = 'django.forms.Textarea'
 
 ########################
 # MAIN DJANGO SETTINGS #
@@ -257,18 +259,17 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
 
+    # custom apps
     "projects"
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
 # these middleware classes will be applied in the order given, and in the
 # response phase the middleware will be applied in reverse order.
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     "mezzanine.core.middleware.UpdateCacheMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # Uncomment if using internationalisation or localisation
-    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
