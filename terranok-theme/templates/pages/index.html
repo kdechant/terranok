@@ -9,82 +9,54 @@
   -->
   {{ block.super }}
 
-  <div class="container">
+  <div class="container mt-3">
     <div class="row">
-      <div class="col-md"><h2>Blog</h2>
+      <div class="col-md">
+        <h2 class="home-subheading">Blog</h2>
+        <div class="p-3">
+          {% for blog_post in blog_posts %}
 
-        {% for blog_post in blog_posts %}
-          <div class="blog-item">
+            <div class="blog-list-item">
+
             {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
               {% block blog_post_list_post_featured_image %}
-                <a href="{{ blog_post.get_absolute_url }}">
-                  <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ blog_post.featured_image }}">
-                </a>
+                <div class="home-blog-list-image">
+                  <img class="img-fluid" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 150 99 %}">
+                </div>
               {% endblock %}
             {% endif %}
-            <div class="blog-content">
 
-              {% block blog_post_list_post_title %}
-                <a href="{{ blog_post.get_absolute_url }}"><h3>{{ blog_post.title }}</h3></a>
-              {% endblock %}
+            {% block blog_post_list_post_title %}
+              <p>
+                <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
+              </p>
+            {% endblock %}
 
-              {% block blog_post_list_post_content %}
-                {{ blog_post.description_from_content|safe }}
-              {% endblock %}
-
-              {% block blog_post_list_post_metainfo %}
-                {% editable blog_post.publish_date %}
-                  <div class="entry-meta">
-                  <span>
-                    {% spaceless %}
-                    {% with blog_post.categories.all as categories %}
-                      {% if categories %}
-                        {% trans "in" %}
-                        {% for category in categories %}
-                          <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
-                      {% endif %}
-                    {% endwith %}
-                    {% endspaceless %}
-                  </span>
-                  </div>
-
-                {% endeditable %}
-              {% endblock %}
-
-              {% block blog_post_list_post_links %}
-                {% keywords_for blog_post as tags %}
-                {% if tags %}
-                  <div class="tags">
-                    {% trans "Tags" %}:
-                    {% spaceless %}
-                      {% for tag in tags %}
-                        <a href="{% url "blog_post_list_tag" tag.slug %}" class="btn btn-xs btn-primary">{{ tag }}</a>
-                      {% endfor %}
-                    {% endspaceless %}
-                  </div>
-                {% endif %}
-
-              {% endblock %}
+            {% block blog_post_list_post_metainfo %}
+              <p class="home-blog-list-meta">
+                {% blocktrans with sometime=blog_post.publish_date|date:"F j, Y" %}{{ sometime }}{% endblocktrans %}
+              </p>
+            {% endblock %}
             </div>
-          </div>
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
 
       <div class="col-md">
-        <h2>Projects</h2>
-
-        {% for project in projects %}
-          <div class="project-item">
-            <a href="{{ project.get_absolute_url }}">
-              <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ project.image }}">
-            </a>
-            {% block project_list_post_title %}
-              <a href="{{ project.get_absolute_url }}"><h3>{{ project.title }}</h3></a>
-            {% endblock %}
-            {{ project.description_from_content|safe }}
-          </div>
-        {% endfor %}
+        <h2 class="home-subheading">Projects</h2>
+        <div class="p-3">
+          {% for project in projects %}
+            <div class="project-list-item">
+              <a href="{{ project.get_absolute_url }}">
+                <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ project.image }}">
+              </a>
+              {% block project_list_post_title %}
+                <a href="{{ project.get_absolute_url }}"><h3>{{ project.title }}</h3></a>
+              {% endblock %}
+              {{ project.description_from_content|safe }}
+            </div>
+          {% endfor %}
+        </div>
       </div>
 
     </div>

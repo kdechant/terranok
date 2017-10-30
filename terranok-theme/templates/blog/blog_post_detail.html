@@ -17,28 +17,28 @@
   {{ blog_post.title }}
 {% endblock %}
 
+{% block blog_post_detail_postedby %}
+  <div class="col-md-3 col-sm-4">
+    {% blocktrans with sometime=blog_post.publish_date|date:"F j, Y" %}{{ sometime }}{% endblocktrans %}
+  </div>
+  <div class="col-md-9 col-sm-8">
+  {% with blog_post.categories.all as categories %}
+    {% if categories %}
+      {% trans "Categories" %}:
+      {% for category in categories %}
+        <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %},
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  </div>
+{% endblock %}
+
 {% block body %}
-
-  {% block blog_post_detail_postedby %}
-    <div class="post-meta">
-      {% blocktrans with sometime=blog_post.publish_date %}{{ sometime }}{% endblocktrans %}
-
-      {% with blog_post.categories.all as categories %}
-        {% if categories %}
-          {% trans "in" %}
-          {% for category in categories %}
-            <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %},
-          {% endif %}
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-    </div>
-
-  {% endblock %}
 
   {% block blog_post_detail_featured_image %}
     {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-      <p><img class="img-responsive" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 600 0 %}"></p>
+      <p><img class="img-fluid" src="{{ MEDIA_URL }}{{ blog_post.featured_image }}"></p>
     {% endif %}
   {% endblock %}
 
