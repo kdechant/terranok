@@ -47,12 +47,12 @@
         <div class="p-3">
           {% for project in projects %}
             <div class="project-list--item">
-              <a href="{{ project.get_absolute_url }}">
+              <a href="{{ project.external_url }}" target="_blank">
                 <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ project.image }}">
               </a>
               {% block project_list_post_title %}
                 <p class="project-list--item--title"></p>
-                <a href="{{ project.get_absolute_url }}">{{ project.title }}</a>
+                <a href="{{ project.external_url }}" target="_blank">{{ project.title }}</a>
               {% endblock %}
               <p class="project-list--item--summary">
                 {{ project.description_from_content|safe }}
