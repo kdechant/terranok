@@ -11,29 +11,29 @@
 
   <div class="container mt-3">
     <div class="row">
-      <div class="col-md">
+      <div class="col-md home-blog">
         <h2 class="home-subheading">Blog</h2>
         <div class="p-3">
           {% for blog_post in blog_posts %}
 
-            <div class="blog-list-item">
+            <div class="blog-list--item">
 
             {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
               {% block blog_post_list_post_featured_image %}
-                <div class="home-blog-list-image">
+                <div class="blog-list--item--image">
                   <img class="img-fluid" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 150 99 %}">
                 </div>
               {% endblock %}
             {% endif %}
 
             {% block blog_post_list_post_title %}
-              <p>
+              <p class="blog-list--item--title">
                 <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
               </p>
             {% endblock %}
 
             {% block blog_post_list_post_metainfo %}
-              <p class="home-blog-list-meta">
+              <p class="blog-list--item--meta">
                 {% blocktrans with sometime=blog_post.publish_date|date:"F j, Y" %}{{ sometime }}{% endblocktrans %}
               </p>
             {% endblock %}
@@ -46,14 +46,17 @@
         <h2 class="home-subheading">Projects</h2>
         <div class="p-3">
           {% for project in projects %}
-            <div class="project-list-item">
+            <div class="project-list--item">
               <a href="{{ project.get_absolute_url }}">
                 <img width="100%" class="img-responsive img-blog" src="{{ MEDIA_URL }}{{ project.image }}">
               </a>
               {% block project_list_post_title %}
-                <a href="{{ project.get_absolute_url }}"><h3>{{ project.title }}</h3></a>
+                <p class="project-list--item--title"></p>
+                <a href="{{ project.get_absolute_url }}">{{ project.title }}</a>
               {% endblock %}
-              {{ project.description_from_content|safe }}
+              <p class="project-list--item--summary">
+                {{ project.description_from_content|safe }}
+              </p>
             </div>
           {% endfor %}
         </div>

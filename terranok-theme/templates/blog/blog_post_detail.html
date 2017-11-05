@@ -17,21 +17,29 @@
   {{ blog_post.title }}
 {% endblock %}
 
-{% block blog_post_detail_postedby %}
-  <div class="col-md-3 col-sm-4">
-    {% blocktrans with sometime=blog_post.publish_date|date:"F j, Y" %}{{ sometime }}{% endblocktrans %}
+{% block meta %}
+<div class="container-fluid subtitle">
+  <div class="container">
+    <div class="row">
+      {% block blog_post_detail_postedby %}
+        <div class="col-md-3 col-sm-4">
+          {% blocktrans with sometime=blog_post.publish_date|date:"F j, Y" %}{{ sometime }}{% endblocktrans %}
+        </div>
+        <div class="col-md-9 col-sm-8">
+        {% with blog_post.categories.all as categories %}
+          {% if categories %}
+            {% trans "Categories" %}:
+            {% for category in categories %}
+              <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %},
+            {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        </div>
+      {% endblock %}
+    </div>
   </div>
-  <div class="col-md-9 col-sm-8">
-  {% with blog_post.categories.all as categories %}
-    {% if categories %}
-      {% trans "Categories" %}:
-      {% for category in categories %}
-        <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %},
-      {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-  </div>
+</div>
 {% endblock %}
 
 {% block body %}

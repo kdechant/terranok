@@ -33,16 +33,35 @@
 
 
 {% endblock %}
-<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-  {% if settings.SITE_TITLE %}<a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>{% endif %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+<div class="container-fluid navcontainer">
+  <div class="container">
+<nav class="navbar navbar-expand-sm navbar-dark" role="navigation">
+  <a class="navbar-brand" href="/">{{ settings.SITE_TITLE }}</a>
+  <span class="tagline">Web Tech, Writing, Retro Gaming</span>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
           aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbar">
     {% page_menu "pages/menus/dropdown.html" %}
+  </div>
+
+{#      <div class="col-md-6">#}
+{#        <h4>Social Links</h4>#}
+{#        <div class="hline-w"></div>#}
+{#        <p>#}
+{#          <a href="#"><i class="fa fa-dribbble"></i></a>#}
+{#          <a href="#"><i class="fa fa-facebook"></i></a>#}
+{#          <a href="#"><i class="fa fa-twitter"></i></a>#}
+{#          <a href="#"><i class="fa fa-instagram"></i></a>#}
+{#          <a href="#"><i class="fa fa-tumblr"></i></a>#}
+{#        </p>#}
+{#      </div>#}
 </nav>
+  </div>
+  </div>
 
 <div class="container-fluid title">
   <div class="container">
@@ -51,15 +70,8 @@
     </div>
   </div>
 </div>
-<div class="container-fluid subtitle">
-  <div class="container">
-    <div class="row">
-      {% block blog_post_detail_postedby %}
-        <div class="col-sm">&nbsp;</div>
-      {% endblock %}
-    </div>
-  </div>
-</div>
+{% block meta %}
+{% endblock %}
 
 <div class="container mt-5">
   <div class="row">
@@ -78,6 +90,7 @@
         {% endif %}
       {% endnevercache %}
 
+      {{ block.super }}
     {% endblock %}
 
   </div>
@@ -89,18 +102,6 @@
       <div class="col-md-6">
         {% page_menu "pages/menus/footer.html" %}
       </div>
-{#      <div class="col-md-6">#}
-{#        <h4>Social Links</h4>#}
-{#        <div class="hline-w"></div>#}
-{#        <p>#}
-{#          <a href="#"><i class="fa fa-dribbble"></i></a>#}
-{#          <a href="#"><i class="fa fa-facebook"></i></a>#}
-{#          <a href="#"><i class="fa fa-twitter"></i></a>#}
-{#          <a href="#"><i class="fa fa-instagram"></i></a>#}
-{#          <a href="#"><i class="fa fa-tumblr"></i></a>#}
-{#        </p>#}
-{#      </div>#}
-
     </div>
 
   </div>

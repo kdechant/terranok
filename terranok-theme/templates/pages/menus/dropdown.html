@@ -3,7 +3,7 @@
 {% if page_branch_in_menu %}
 
 {% if branch_level == 0 %}
-<ul class="navbar-nav navbar-right mr-auto">
+<ul class="navbar-nav ml-auto">
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li class="nav-item {% if on_home %} active {% endif %}" id="dropdown-menu-home">
@@ -11,7 +11,7 @@
     </li>
     {% endif %}
     {% if page.in_menu %}
-    <li class="nav-item {% if page.has_children_in_menu %}dropdown{% endif %}
+    <li class="nav-item mx-3 {% if page.has_children_in_menu %}dropdown{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
         id="{{ page.html_id }}">
         <a class="nav-link" href="{{ page.get_absolute_url }}"

@@ -1,7 +1,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 // colors
-$color-primary: #3a50b2;
+$color-primary: #364aaa;
 $color-primary-alt: #475CBD;
 // $color-primary: #675848;
 $color-secondary: #dc9;
@@ -28,6 +28,7 @@ body {
 
 h1 {
   margin-bottom: 20px;
+  font-size: 2rem;
   font-weight: 700;
 }
 
@@ -66,43 +67,62 @@ figure {
   }
 }
 
+.navcontainer {
+  background: $color-primary-alt;
+  .container, .navbar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+  .tagline {
+    display: none;
+    @extend .pl-3;
+    color: #ccc;
+    @media (min-width: 768px) {
+      display: inline;
+    }
+  }
+}
 .title {
   @extend .background-primary-gradient;
   color: white;
+  padding: 25px 15px 15px;
   @media (min-width: 768px) {
     padding: 30px 0 15px;
   }
 }
 .subtitle {
-  background-color: $color-secondary;
   @extend .pt-3;
   @extend .pb-3;
 }
 
 // blog
-.post-meta {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  color: #666;
-  font-size: 14px;
-  padding: 4px 0;
-  margin: 20px 0;
-  @extend .no-gutters;
-}
-.blog-list-item {
-  margin: 40px 0;
+.blog-list--item {
+  border-bottom: 1px solid #eee;
+  @extend .py-4;
   h2 {
-    margin: 20px 0;
+    @extend .py-2;
+    text-transform: uppercase;
     font-size: 26px;
   }
-}
-.home-blog-list-image {
-  padding-right: 15px;
-  @extend .float-left;
-}
-.home-blog-list-meta {
-  color: #666;
-  font-size: 14px;
+  .blog-list--item--title {
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+  .blog-list--item--meta {
+    color: #666;
+    font-size: 14px;
+    padding: 4px 0;
+    @extend .mt-4;
+    @extend .no-gutters;
+  }
+  .blog-list--item--image {
+    padding-right: 15px;
+    @extend .mb-3;
+    @extend .float-left;
+  }
 }
 
 // home page
@@ -112,10 +132,29 @@ figure {
   font-size: 1.5rem;
   padding: 15px;
 }
+.home-blog {
+  .blog-list--item {
+    h2 {
+      @extend .py-1;
+      text-transform: uppercase;
+      font-size: 22px;
+    }
+    .blog-list--item--meta {
+      @extend .my-0;
+    }
+  }
+}
 
 // projects
-.project-list-item {
+.project-list--item {
+  @extend .pb-3;
   @extend .mb-4;
+  border-bottom: 1px solid #eee;
+  h2 {
+    @extend .py-2;
+    text-transform: uppercase;
+    font-size: 26px;
+  }
   img {
     @extend .mb-2;
   }
